@@ -4,14 +4,36 @@
   <title>Sudoku</title>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <style type="text/css">
+  html {
+    height: 100%;
+  }
+  body {
+    height: 100%;
+    margin: 0;
+  }
   input {
     width: 33.3%;
+    height: 33.3%;
+    border: 1px solid #CCCCCC;
     box-sizing: border-box;
     text-align: center;
+    font-size: 30px;
+  }
+  #sudoku {
+    height: 100%;
+  }
+  .sudokuBox {
+    width: 33.3%;
+    height: 33.3%;
+    box-sizing: border-box;
+    text-align: center;
+    float: left;
   }
   .section {
+    height: 100%;
     border: 1px solid black;
-    width: 30%;
+    box-sizing: border-box;
+    text-align: center;
   }
   </style>
 </head>
@@ -19,11 +41,11 @@
   <div id="sudoku"></div>
 
   <script type="text/javascript">
-    // Create a 3x3 section with 9 input fields
-    function create3x3section() {
+    // Create a section with 3x3 input fields
+    function create3x3section(sectionNum) {
       var section = '<div class="section">';
       for (var i = 0; i < 9; i++) {
-        section += '<input type="text" value="' + i + '"/>';
+        section += '<input id="section section' + sectionNum + i +  '" type="text" value="' + i + '"/>';
         if (i % 3 === 2) {
           section += '<br />';
         }
@@ -31,6 +53,19 @@
       section += '</div>'
       return section;
     }
+
+    // Create a sudoku box with 3x3 sections
+    function createSudokuBox() {
+      var sudokuBox = '';
+      for (var i = 0; i < 9; i++) {
+        sudokuBox += '<div class="sudokuBox">';
+        sudokuBox += create3x3section(i);
+        sudokuBox += '</div>';
+      }
+      $('#sudoku').html(sudokuBox);
+    }
+
+    createSudokuBox();
   </script>
 </body>
 </html>
