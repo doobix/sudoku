@@ -1,0 +1,31 @@
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  margin: 0;
+}
+input {
+  width: 33.3%;
+  height: 33.3%;
+  border: 1px solid #CCCCCC;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 30px;
+}
+#sudoku {
+  height: 100%;
+}
+.sudokuBoard {
+  width: 33.3%;
+  height: 33.3%;
+  box-sizing: border-box;
+  text-align: center;
+  float: left;
+}
+.section {
+  height: 100%;
+  border: 1px solid black;
+  box-sizing: border-box;
+  text-align: center;
+}
