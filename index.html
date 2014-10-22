@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sudoku</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <style type="text/css">
+  input {
+    width: 33.3%;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  .section {
+    border: 1px solid black;
+    width: 30%;
+  }
+  </style>
+</head>
+<body>
+  <div id="sudoku"></div>
+
+  <script type="text/javascript">
+    // Create a 3x3 section with 9 input fields
+    function create3x3section() {
+      var section = '<div class="section">';
+      for (var i = 0; i < 9; i++) {
+        section += '<input type="text" value="' + i + '"/>';
+        if (i % 3 === 2) {
+          section += '<br />';
+        }
+      }
+      section += '</div>'
+      return section;
+    }
+  </script>
+</body>
+</html>
