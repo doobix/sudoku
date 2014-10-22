@@ -106,7 +106,7 @@ input {
 /* line 26, ../sass/_main.scss */
 .section {
   height: 100%;
-  border: 1px solid black;
+  border: 2px solid black;
   box-sizing: border-box;
   text-align: center;
 }

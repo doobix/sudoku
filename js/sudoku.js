@@ -1,11 +1,14 @@
 // Sudoku Board Game
-var Sudoku = function() {
+// Takes an argument from 0.00 to 1.00 on how hard the game will be.
+// Default difficulty: 0.63
+var Sudoku = function(difficulty) {
   this.board = this.generateValues();
+  this.difficulty = difficulty || 0.63;
 }
 
 // Create a section with 3x3 input fields
 Sudoku.prototype.create3x3section = function(sectionNum) {
-  var section = '<div class="section">';
+  var section = '<div class="section section' + sectionNum + '">';
   var offset = 0;
 
   for (var i = 0; i < 9; i++) {
@@ -13,10 +16,23 @@ Sudoku.prototype.create3x3section = function(sectionNum) {
     var newSectionNum = (sectionNum % 3) * 3;
     var colIndex = newSectionNum + offset;
     var rowIndex = newSectionNum + i % 3;
+    var value = this.board[colIndex][rowIndex];
+    var isBlank = false;
 
-    section += '<input id="section section' + sectionNum + i +  '" type="text"' + 
-               'value="' + this.board[colIndex][rowIndex] + '"/>';
+    // Create random blank input boxes
+    if (Math.random() < this.difficulty) {
+      isBlank = true;
+    }
 
+    // Display a blank input box
+    if (isBlank) {
+      section += '<input class="num num' + sectionNum + i +  '" type="text"' + 
+                 'value="" />';
+    } else { // Display a value in the input box and disable it
+      section += '<input class="num num' + sectionNum + i +  '" type="text"' + 
+                 'value="' + value + '" disabled="disabled" />';
+    }
+    
     if (i % 3 === 2) {
       section += '<br />';
       offset++;
