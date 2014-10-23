@@ -56,10 +56,10 @@ Sudoku.prototype.createSection = function(sectionNum) {
 
     // Display a blank input box
     if (isBlank) {
-      section += '<input class="slot" id="slot' + slot +  '" type="text"' + 
+      section += '<input class="slot" id="slot' + slot +  '" type="number"' + 
                  'maxlength="1" />';
     } else { // Display a value in the input box and disable it
-      section += '<input class="slot" id="slot' + slot +  '" type="text"' + 
+      section += '<input class="slot" id="slot' + slot +  '" type="number"' + 
                  'value="' + value + '" disabled="disabled" maxlength="1" />';
     }
     
