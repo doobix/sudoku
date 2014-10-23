@@ -1,10 +1,10 @@
 # sudoku
 
-======
+===
 
 A Sudoku board game written in HTML, CSS, and JavaScript. There is only a single board for now, with random blank squares.
 
-======
+===
 
 ## Technologies Used
 
@@ -15,7 +15,7 @@ The jQuery library makes development very simple, with easy-to-use methods for s
 
 Sass/Compass makes coding CSS faster with the ability to use variables, nested rules, and mixins.
 
-======
+===
 
 ## File Structure
 
@@ -23,7 +23,7 @@ Sass/Compass makes coding CSS faster with the ability to use variables, nested r
     /js/sudoku.js - Sudoku game functions
     index.html - Main page
 
-======
+===
 
 ## Development
 
@@ -38,7 +38,7 @@ To get jQuery, use Bower. Navigate to the folder and run these commands:
     sudo npm install -g bower
     bower install
 
-======
+===
 
 ## Roadmap
 
