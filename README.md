@@ -2,6 +2,10 @@
 
 A Sudoku board game written in HTML, CSS, and JavaScript. There is only a single board for now, with random blank squares.
 
+## Demo
+
+Checkout a live sudoku game here: http://seewes.github.io/sudoku/
+
 ## Technologies Used
 
 + jQuery
@@ -16,6 +20,26 @@ Sass/Compass makes coding CSS faster with the ability to use variables, nested r
     /css/style.css - Stylesheet
     /js/sudoku.js - Sudoku game functions
     index.html - Main page
+
+## Usage
+
+### A simple usage demo
+
+First, create a div for containing the sudoku board. It must have the id of "sudokuBoard".
+
+    <div id="sudokuBoard"></div>
+
+And then instantiate the Sudoku board game:
+
+    var sudokuBoard = new Sudoku();
+    sudokuBoard.createBoard();
+
+### Advanced usage demo
+
+To use any element ID of your choice, simply put it as the first argument. You may enter a 2nd argument (from 0.01 to 1.00) to change the difficulty of the game. The higher the number, the more blank squares there will be.
+
+    var sudokuBoard = new Sudoku('#DOMwithSudoku', 0.85);
+    sudokuBoard.createBoard();
 
 ## Development
 
@@ -33,3 +57,5 @@ The jQuery script is loaded from Google's CDN. To use a local copy of jQuery, us
 ## Roadmap
 
 In the future, I want to implement a working sudoku board generator. For the time being, this only outputs one board.
+
+Also, I want to implement an input slider for the player to select the difficulty of the sudoku board. The higher the difficulty, the more blank squares there will be.

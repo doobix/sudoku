@@ -74,7 +74,7 @@ Sudoku.prototype.createSection = function(sectionNum) {
   return section;
 };
 
-// Create a sudoku box with 3x3 sections
+// Create a sudoku board with 3x3 sections
 Sudoku.prototype.createBoard = function() {
   var sudokuBoard = '';
   for (var i = 0; i < 9; i++) {
