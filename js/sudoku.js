@@ -1,14 +1,24 @@
 // Sudoku Board Game
-// Takes an argument from 0.01 to 1.00 on how hard the game will be.
-// Default difficulty: 0.63
-var Sudoku = function(difficulty) {
-  this.board = this.generateValues();
+// @param {string} element - The DOM element that will have the sudoku game.
+// @param {float} difficulty - The difficulty of the game,from 0.01 to 1.00.
+// Default difficulty = 0.63
+var Sudoku = function(element, difficulty) {
+  this.element = element || '#sudokuBoard';
   this.difficulty = difficulty || 0.63;
-  this.answers = {};
-}
+  this._board = this.generateValues();
+  this._answers = {};
+
+  // Check which input field is being typed in
+  $(this.element).on('keyup', function(event){
+    var input = event.target;
+    var inputId = input.id;
+    var inputVal = parseInt($(input).val(), 10);
+    this.checkAnswer(inputId, inputVal);
+  }.bind(this));
+};
 
 // Create a section with 3x3 input fields
-Sudoku.prototype.create3x3section = function(sectionNum) {
+Sudoku.prototype.createSection = function(sectionNum) {
   var row = 0;
   var section = '<div class="section section' + sectionNum + '">';
 
@@ -27,7 +37,7 @@ Sudoku.prototype.create3x3section = function(sectionNum) {
     var colIndex = ((sectionNum % 3) * 3) + i % 3;
 
     // Get the value from the board's row column
-    var value = this.board[rowIndex][colIndex];
+    var value = this._board[rowIndex][colIndex];
 
     var isBlank = false;
     var slot = '' + sectionNum + i;
@@ -35,16 +45,20 @@ Sudoku.prototype.create3x3section = function(sectionNum) {
     // Create random blank input boxes
     if (Math.random() < this.difficulty) {
       isBlank = true;
-      this.answers['slot' + slot] = value;
+      this._answers['slot' + slot] = {
+        value: value,
+        isCorrect: false
+      };
+      this._numOfBlanks++;
     }
 
     // Display a blank input box
     if (isBlank) {
       section += '<input class="slot" id="slot' + slot +  '" type="text"' + 
-                 'value="" />';
+                 'maxlength="1" />';
     } else { // Display a value in the input box and disable it
       section += '<input class="slot" id="slot' + slot +  '" type="text"' + 
-                 'value="' + value + '" disabled="disabled" />';
+                 'value="' + value + '" disabled="disabled" maxlength="1" />';
     }
     
     // Add a line break every 3 numbers
@@ -56,18 +70,39 @@ Sudoku.prototype.create3x3section = function(sectionNum) {
 
   section += '</div>';
   return section;
-}
+};
 
 // Create a sudoku box with 3x3 sections
-Sudoku.prototype.createBoard = function(element) {
+Sudoku.prototype.createBoard = function() {
   var sudokuBoard = '';
   for (var i = 0; i < 9; i++) {
     sudokuBoard += '<div class="sudokuSection">';
-    sudokuBoard += this.create3x3section(i);
+    sudokuBoard += this.createSection(i);
     sudokuBoard += '</div>';
   }
-  $(element).html(sudokuBoard);
-}
+  $(this.element).html(sudokuBoard);
+};
+
+// Check if user input matches the correct answer
+Sudoku.prototype.checkAnswer = function(slot, value) {
+  if (this._answers[slot].value === value) {
+    this._answers[slot].isCorrect = true;
+  } else {
+    this._answers[slot].isCorrect = false;
+  }
+
+  this.validator();
+};
+
+// Check entire answer object to see if all answers are true
+Sudoku.prototype.validator = function() {
+  for (var slot in this._answers) {
+    if (!this._answers[slot].isCorrect) {
+      return false;
+    }
+  }
+  return true;
+};
 
 // Generate values for a sudoku board
 Sudoku.prototype.generateValues = function() {
@@ -86,4 +121,4 @@ Sudoku.prototype.generateValues = function() {
   ];
 
   return board;
-}
+};
