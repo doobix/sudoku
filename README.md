@@ -25,11 +25,11 @@ Compass is needed to compile the Sass files. Navigate to the folder in terminal 
 
 ## Installing Dependencies
 
-To get jQuery, use Bower. Navigate to the folder and run these commands:
+The jQuery script is loaded from Google's CDN. To use a local copy of jQuery, use Bower. Navigate to the folder and run these commands:
 
     sudo npm install -g bower
     bower install
 
 ## Roadmap
 
-In the future, I want to implement a working sudoku board generator.
+In the future, I want to implement a working sudoku board generator. For the time being, this only outputs one board.
