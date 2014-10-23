@@ -7,11 +7,12 @@
   <link href="css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-  <div id="sudoku"></div>
+  <div id="sudokuBoard"></div>
 
   <script type="text/javascript">
   var sudokuBoard = new Sudoku();
-  sudokuBoard.createBoard('#sudoku');
+  sudokuBoard.createBoard('#sudokuBoard');
+  console.log(sudokuBoard.answers)
   </script>  
 </body>
 </html>

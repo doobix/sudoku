@@ -1,44 +1,60 @@
 // Sudoku Board Game
-// Takes an argument from 0.00 to 1.00 on how hard the game will be.
+// Takes an argument from 0.01 to 1.00 on how hard the game will be.
 // Default difficulty: 0.63
 var Sudoku = function(difficulty) {
   this.board = this.generateValues();
   this.difficulty = difficulty || 0.63;
+  this.answers = {};
 }
 
 // Create a section with 3x3 input fields
 Sudoku.prototype.create3x3section = function(sectionNum) {
+  var row = 0;
   var section = '<div class="section section' + sectionNum + '">';
-  var offset = 0;
 
   for (var i = 0; i < 9; i++) {
-    // Calculate the board's row and column indices
-    var newSectionNum = (sectionNum % 3) * 3;
-    var colIndex = newSectionNum + offset;
-    var rowIndex = newSectionNum + i % 3;
-    var value = this.board[colIndex][rowIndex];
+    // Calculate the board's row index
+    var rowIndex;
+    if (sectionNum < 3) {
+      rowIndex = row;
+    } else if (sectionNum < 6) {
+      rowIndex = 3 + row;
+    } else {
+      rowIndex = 6 + row;
+    }
+
+    // Calculate the column index
+    var colIndex = ((sectionNum % 3) * 3) + i % 3;
+
+    // Get the value from the board's row column
+    var value = this.board[rowIndex][colIndex];
+
     var isBlank = false;
+    var slot = '' + sectionNum + i;
 
     // Create random blank input boxes
     if (Math.random() < this.difficulty) {
       isBlank = true;
+      this.answers['slot' + slot] = value;
     }
 
     // Display a blank input box
     if (isBlank) {
-      section += '<input class="num num' + sectionNum + i +  '" type="text"' + 
+      section += '<input class="slot" id="slot' + slot +  '" type="text"' + 
                  'value="" />';
     } else { // Display a value in the input box and disable it
-      section += '<input class="num num' + sectionNum + i +  '" type="text"' + 
+      section += '<input class="slot" id="slot' + slot +  '" type="text"' + 
                  'value="' + value + '" disabled="disabled" />';
     }
     
+    // Add a line break every 3 numbers
     if (i % 3 === 2) {
       section += '<br />';
-      offset++;
+      row++;
     }
   }
-  section += '</div>'
+
+  section += '</div>';
   return section;
 }
 
@@ -46,7 +62,7 @@ Sudoku.prototype.create3x3section = function(sectionNum) {
 Sudoku.prototype.createBoard = function(element) {
   var sudokuBoard = '';
   for (var i = 0; i < 9; i++) {
-    sudokuBoard += '<div class="sudokuBoard">';
+    sudokuBoard += '<div class="sudokuSection">';
     sudokuBoard += this.create3x3section(i);
     sudokuBoard += '</div>';
   }

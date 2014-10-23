@@ -90,12 +90,12 @@ input {
 }
 
 /* line 16, ../sass/_main.scss */
-#sudoku {
+#sudokuBoard {
   height: 100%;
 }
 
 /* line 19, ../sass/_main.scss */
-.sudokuBoard {
+.sudokuSection {
   width: 33.3%;
   height: 33.3%;
   box-sizing: border-box;
