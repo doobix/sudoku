@@ -54,6 +54,7 @@ The jQuery script is loaded from Google's CDN. To use a local copy of jQuery, us
 
 ## Roadmap
 
-In the future, I want to implement a working sudoku board generator. For the time being, this only outputs one board.
-
-Also, I want to implement an input slider for the player to select the difficulty of the sudoku board. The higher the difficulty, the more blank squares there will be.
++ Implement a working sudoku board generator. For the time being, this only outputs one board.
++ Implement an input slider for the player to select the difficulty of the sudoku board. The higher the difficulty, the more blank squares there will be.
++ Set up a node.js server to use a template engine.
++ Set up a database to keep track of high scores.
