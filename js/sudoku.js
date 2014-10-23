@@ -99,7 +99,7 @@ Sudoku.prototype.checkAnswer = function(slot, value) {
   }
 
   // Display message if every answer is correct
-  if (!this.validator()) {
+  if (this.validator()) {
     var message = '<div id="congrats">' +
                   '<p>Congratulations!<br />You\'ve won!</p>' +
                   '<button id="replay">Play Again</button></div>';
@@ -115,7 +115,7 @@ Sudoku.prototype.checkAnswer = function(slot, value) {
 // Check entire answer object to see if all answers are true
 Sudoku.prototype.validator = function() {
   for (var slot in this._answers) {
-    if (this._answers[slot].isCorrect) {
+    if (!this._answers[slot].isCorrect) {
       return false;
     }
   }

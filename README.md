@@ -32,14 +32,12 @@ First, create a div for containing the sudoku board. It must have the id of "sud
 And then instantiate the Sudoku board game:
 
     var sudokuBoard = new Sudoku();
-    sudokuBoard.createBoard();
 
 ### Advanced usage example
 
 To use any element ID of your choice, simply put it as the first argument. You may enter a 2nd argument (from 0.01 to 1.00) to change the difficulty of the game. The higher the number, the more blank squares there will be.
 
     var sudokuBoard = new Sudoku('#DOMwithSudoku', 0.85);
-    sudokuBoard.createBoard();
 
 ## Development
 
