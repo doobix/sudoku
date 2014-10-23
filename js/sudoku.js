@@ -5,8 +5,10 @@
 var Sudoku = function(element, difficulty) {
   this.element = element || '#sudokuBoard';
   this.difficulty = difficulty || 0.63;
-  this._board = this.generateValues();
-  this._answers = {};
+  this._board;
+  this._answers;
+
+  this.startSudoku();
 
   // Check which input field is being typed in
   $(this.element).on('keyup', function(event){
@@ -83,6 +85,11 @@ Sudoku.prototype.createBoard = function() {
   $(this.element).html(sudokuBoard);
 };
 
+// Remove the sudoku board
+Sudoku.prototype.removeBoard = function() {
+  $('.sudokuSection').remove();
+};
+
 // Check if user input matches the correct answer
 Sudoku.prototype.checkAnswer = function(slot, value) {
   if (this._answers[slot].value === value) {
@@ -91,17 +98,38 @@ Sudoku.prototype.checkAnswer = function(slot, value) {
     this._answers[slot].isCorrect = false;
   }
 
-  this.validator();
+  // Display message if every answer is correct
+  if (!this.validator()) {
+    var message = '<div id="congrats">' +
+                  '<p>Congratulations!<br />You\'ve won!</p>' +
+                  '<button id="replay">Play Again</button></div>';
+    $(this.element).fadeOut(400,
+      function() {
+        $(message).insertAfter(this.element).fadeIn();
+        $('#replay').on('click', this.startSudoku.bind(this));
+      }.bind(this)
+    );
+  }
 };
 
 // Check entire answer object to see if all answers are true
 Sudoku.prototype.validator = function() {
   for (var slot in this._answers) {
-    if (!this._answers[slot].isCorrect) {
+    if (this._answers[slot].isCorrect) {
       return false;
     }
   }
   return true;
+};
+
+// Start sudoku game
+Sudoku.prototype.startSudoku = function() {
+  $('#congrats').remove();
+  this.removeBoard();
+  this._board = this.generateValues();
+  this._answers = {};
+  this.createBoard();
+  $(this.element).fadeIn();
 };
 
 // Generate values for a sudoku board

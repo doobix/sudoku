@@ -1,19 +1,32 @@
+$font-color: #FFFFFF;
+$background: #09091a;
+$input-background: #FFFFFF;
+$input-button-background: #1fbad6;
+
 html {
   height: 100%;
 }
 body {
   height: 100%;
   margin: 0;
+  background: $background;
+  color: $font-color;
+  font-family: 'Roboto', sans-serif;
 }
-input {
-  width: 33.3%;
-  height: 33.3%;
-  border: 1px solid #CCCCCC;
-  box-sizing: border-box;
-  text-align: center;
+h2 {
+  margin: 10px 0;
   font-size: 30px;
+  font-style: italic;
+  text-transform: uppercase;
+  text-align: center;
 }
+#wrapper {
+  height: 100%;
+}
+
+/* Sudoku Game Board */
 #sudokuBoard {
+  margin: 0 auto;
   height: 100%;
 }
 .sudokuSection {
@@ -28,4 +41,40 @@ input {
   border: 2px solid black;
   box-sizing: border-box;
   text-align: center;
+}
+.slot {
+  width: 33.3%;
+  height: 33.3%;
+  border: 2px solid $background;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 30px;
+  font-family: 'Roboto', sans-serif;
+  background: $input-background;
+  padding: 18px 10px;
+  @include border-radius(2px);
+}
+
+/* Congratulations Box */
+#congrats {
+  margin: 0 auto;
+  height: 100%;
+  max-width: 500px;
+  text-align: center;
+  display: none;
+
+  p {
+    margin: 38px 0;
+    font-size: 30px;
+  }
+}
+#replay {
+  color: $font-color;
+  background: $input-button-background;
+  width: 100%;
+  height: 50px;
+  border: 0;
+  cursor: pointer;
+  font-size: 20px;
+  text-transform: uppercase;
 }
