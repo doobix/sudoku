@@ -23,7 +23,7 @@ Sass/Compass makes coding CSS faster with the ability to use variables, nested r
 
 ## Usage
 
-### A simple usage demo
+### A simple usage example
 
 First, create a div for containing the sudoku board. It must have the id of "sudokuBoard".
 
@@ -34,7 +34,7 @@ And then instantiate the Sudoku board game:
     var sudokuBoard = new Sudoku();
     sudokuBoard.createBoard();
 
-### Advanced usage demo
+### Advanced usage example
 
 To use any element ID of your choice, simply put it as the first argument. You may enter a 2nd argument (from 0.01 to 1.00) to change the difficulty of the game. The higher the number, the more blank squares there will be.
 
