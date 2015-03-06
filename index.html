@@ -9,11 +9,15 @@
 </head>
 <body>
   <div id="wrapper">
-    <h2>Sudoku</h2>
+    <h2 id="title">Sudoku</h2>
     <div id="sudokuBoard"></div>
   </div>
   <script type="text/javascript">
   var sudokuBoard = new Sudoku();
+
+  // Make sudoku board fit in browser window
+  var sudokuHeight = $("body").innerHeight() - $("#title").outerHeight();
+  $("#sudokuBoard").innerHeight(sudokuHeight);
   </script>  
 </body>
 </html>
