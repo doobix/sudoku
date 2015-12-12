@@ -4,7 +4,7 @@ A Sudoku board game written in HTML, CSS, and JavaScript. There is only a single
 
 ## Demo
 
-Checkout a live sudoku game here: http://seewes.github.io/sudoku/
+Checkout a live sudoku game here: http://doobix.github.io/sudoku/
 
 ## Technologies Used
 
